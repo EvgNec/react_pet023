@@ -2,6 +2,7 @@ import { Component } from 'react';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList/ContactList';
 import { nanoid } from 'nanoid'
+import LoginForm from './LoginForm';
 
 
 
@@ -17,15 +18,28 @@ class App extends Component {
   }
 
   
-  handleSubmit = (name) => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     const contact = {
       id: nanoid(),
-      name,
+      name:'',
       number: '1111111111',
     };  
+
+  
+    const form = e.currentTarget;
+    const login = form.elements.name.value;
+    console.log("🚀 ~ App ~ login:", login)
+    
+    // const password = form.elements.password.value;
+  //   console.log(login, password);
+    // this.props.onSubmit({ login, password });
+    form.reset();
+/*
+
     this.setState(({ contacts }) => ({
       contacts: [...contacts, contact],
-    }));
+    }));*/
   };
 
 
@@ -33,6 +47,7 @@ class App extends Component {
     const { contacts } = this.state;
     return (
       <>
+      <LoginForm onSubmit={values => console.log(values)}/>
       <h1>Phonebook</h1>
       <ContactForm handleSubmit={this.handleSubmit}/>
 
