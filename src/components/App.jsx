@@ -19,27 +19,19 @@ class App extends Component {
 
   
   handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault();  
+    const form = e.currentTarget;
+    const name = form.elements.name.value;   
+    const phone = form.elements.number.value;    
     const contact = {
       id: nanoid(),
-      name:'',
-      number: '1111111111',
-    };  
-
-  
-    const form = e.currentTarget;
-    const login = form.elements.name.value;
-    console.log("🚀 ~ App ~ login:", login)
-    
-    // const password = form.elements.password.value;
-  //   console.log(login, password);
-    // this.props.onSubmit({ login, password });
-    form.reset();
-/*
-
+      name:name,
+      number: phone,
+    }; 
     this.setState(({ contacts }) => ({
       contacts: [...contacts, contact],
-    }));*/
+    }));
+    form.reset();
   };
 
 
