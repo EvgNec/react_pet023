@@ -2,15 +2,6 @@ import React from 'react';
 import css from './ContactForm.module.css';
 
 class ContactForm extends React.Component {
-  // handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   const form = evt.currentTarget;
-  //   const login = form.elements.login.value;
-  //   const password = form.elements.password.value;
-  //   //   console.log(login, password);
-  //   this.props.onSubmit({ login, password });
-  //   form.reset();
-  // };
 
   render() {
     return (
