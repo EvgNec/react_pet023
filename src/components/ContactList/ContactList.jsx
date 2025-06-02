@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './ContactList.module.css';
+// import css from './ContactList.module.css';
 
 const ContactList = ({ contacts }) => (
   <ul>
