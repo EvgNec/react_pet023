@@ -3,6 +3,7 @@ import ContactForm from './ContactForm';
 import ContactList from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
 import Filter from './Filter/Filter';
+import Notiflix from 'notiflix';
 
 class App extends Component {
   state = {
@@ -19,20 +20,35 @@ class App extends Component {
     e.preventDefault();
     const form = e.currentTarget;
     const name = form.elements.name.value;
-    const phone = form.elements.number.value;
+    const number = form.elements.number.value;
     const contact = {
       id: nanoid(),
-      name: name,
-      number: phone,
+      name,
+      number,
     };
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, contact],
-    }));
-    form.reset();
+    // this.setState(({ contacts }) => ({
+    //   contacts: [...contacts, contact],
+    // }));
+    if (
+      this.state.contacts.find(
+        existingContact => existingContact.name === contact.name
+      )
+    ) {
+      Notiflix.Notify.failure(`Contact ${contact.name} is already`);
+    } else {
+      this.setState(prevState => ({
+        contacts: [contact, ...prevState.contacts],
+      }));
+      Notiflix.Notify.success(
+        `Contact ${contact.name} added to  your phonebook`
+      );}
+    // form.reset();
   };
 
   handleChange = e => {
-    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
+    const {name, value} = e.currentTarget;
+    this.setState({ [name]: value });
+    // this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
   render() {
