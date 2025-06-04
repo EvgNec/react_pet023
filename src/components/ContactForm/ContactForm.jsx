@@ -6,6 +6,7 @@ class ContactForm extends React.Component {
   render() {
     return (
       <>
+      <h1>Phonebook</h1>
         <form className={css.contactForm} onSubmit={this.props.handleSubmit}>
           <label>
             <h2  className={css.title}>Name:</h2>

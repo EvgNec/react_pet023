@@ -80,11 +80,9 @@ class App extends Component {
     const { contacts, filter } = this.state;
     return (
       <>
-        <h1>Phonebook</h1>
         <ContactForm handleSubmit={this.handleSubmit} />
 
         <Filter filter={filter} handleChange={this.handleChange} />
-        <h2>Contacts</h2>
         <ContactList contacts={contacts} filter={filter} />
         <ContactForm2 handleSubmit2={this.handleSubmit2} />
       </>
