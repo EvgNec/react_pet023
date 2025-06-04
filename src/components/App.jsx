@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import ContactForm from './ContactForm';
+import ContactForm2 from './ContactForm2';
 import ContactList from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
 import Filter from './Filter/Filter';
@@ -41,12 +42,36 @@ class App extends Component {
       }));
       Notiflix.Notify.success(
         `Contact ${contact.name} added to  your phonebook`
-      );}
+      );
+    }
+    // form.reset();
+  };
+
+  handleSubmit2 = ({ name, number }) => {
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+    if (
+      this.state.contacts.find(
+        existingContact => existingContact.name === contact.name
+      )
+    ) {
+      Notiflix.Notify.failure(`Contact ${contact.name} is already`);
+    } else {
+      this.setState(prevState => ({
+        contacts: [contact, ...prevState.contacts],
+      }));
+      Notiflix.Notify.success(
+        `Contact ${contact.name} added to  your phonebook`
+      );
+    }
     // form.reset();
   };
 
   handleChange = e => {
-    const {name, value} = e.currentTarget;
+    const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
     // this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
@@ -61,6 +86,7 @@ class App extends Component {
         <Filter filter={filter} handleChange={this.handleChange} />
         <h2>Contacts</h2>
         <ContactList contacts={contacts} filter={filter} />
+        <ContactForm2 handleSubmit2={this.handleSubmit2} />
       </>
     );
   }
