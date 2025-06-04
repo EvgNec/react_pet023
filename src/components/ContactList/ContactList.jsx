@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './ContactList.module.css';
 
-const ContactList = ({ contacts, filter, deleteContact }) => {
+const ContactList = ({ contacts, filter, delContact }) => {
   const normalizedFilter = filter.toLowerCase();
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
@@ -15,7 +15,7 @@ const ContactList = ({ contacts, filter, deleteContact }) => {
         <li key={id} className={css.listItem}>
           <p>{name}</p>
           <p>{number}</p>
-          <button onClick={() => deleteContact(id)} type="button" className={css.deleteBtn}>
+          <button onClick={() => delContact(id)} type="button" className={css.deleteBtn}>
                 Delete
               </button>
         </li>

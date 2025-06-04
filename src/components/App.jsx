@@ -17,6 +17,11 @@ class App extends Component {
     filter: '',
   };
 
+  handleRemoveContact = (id) => {
+		this.setState((prev) => ({
+			contacts: prev.contacts.filter((contact) => contact.id !== id),
+		}))};
+
   handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -83,7 +88,7 @@ class App extends Component {
         <ContactForm handleSubmit={this.handleSubmit} />
 
         <Filter filter={filter} handleChange={this.handleChange} />
-        <ContactList contacts={contacts} filter={filter} />
+        <ContactList contacts={contacts} filter={filter} delContact={this.handleRemoveContact}/>
         <ContactForm2 handleSubmit2={this.handleSubmit2} />
       </>
     );
